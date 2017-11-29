@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- jquery for Bootstrap -->
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+
+  <!-- font awesome -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Vue.js script source -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+  <style>
+    .taskDone {
+      text-decoration: line-through;
+    }
+  </style>
+
+  <title>Resource App</title>
+</head>
+<body>
+<div class="container col-sm-8 col-sm-offset-2">
+  <div id="resourceApp">
+    <h1>Resource List</h1>
+
+    <!-- Add new task form -->
+    <div class="panel panel-default">
+      <h2 class='text-center'>Add New Resource</h2>
+
+      <form v-on:submit='addResource'>
+        <div class="col-sm-3">
+          <input type="text" class='form-control' v-model='resource.firstName'>
+        </div>
+		<div class="col-sm-3">
+          <input type="text" class='form-control' v-model='resource.lastName'>
+        </div>
+		<div class="col-sm-3">
+          <input type="text" class='form-control' v-model='resource.code'>
+        </div>
+        <div class="col-sm-3">
+          <input type="submit" value='Add' class='btn btn-primary btn-block'>
+        </div>
+      </form>
+      &nbsp;
+    </div>
+
+    <table class="table">
+      <thead>
+        <th>first Name</th>
+        <th>last Name</th>
+        <th>code</th>
+      </thead>
+
+      <tbody>
+        <tr v-for='r in resources'>
+         <td><span> {{ resource.firstName }}</span></td>
+		 <td><span>{{ resource.lastName }}</span></td>
+          <td><span>{{ resource.code }}</span></td>
+          <td><button class="btn btn-danger btn-block" v-on:click="deleteResource(r)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+
+
+
+axios.get('http://localhost:8080/ressources/')
+    .then(function (response) {
+        console.log(response.data) // Resources!
+    })
+	
+var resourceApp = new Vue({
+  el: '#resourceApp',
+  data: {
+    resources: [],
+	resource:{
+      "ressourceId": "",
+      "firstName": "",
+      "lastName": "",
+      "code": ""
+   }
+  },
+  methods: {
+    addResource: function(e) {
+      e.preventDefault();
+	  var r =this.resource;
+      this.resources.push(r);
+    },
+    deleteResource: function(resource) {
+      this.resources.splice(this.resources.indexOf(resource), 1)
+    }
+  }
+});
+</script>
+</body>
+</html>
