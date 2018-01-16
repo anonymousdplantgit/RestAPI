@@ -22,9 +22,10 @@ export class UserListComponent implements OnInit {
     this.userService.findAll().subscribe(
       users => {
         this.users = users;
+        console.log(users);
       },
       err => {
-        console.log(err);
+        console.log("users : " + err);
       }
  
     );

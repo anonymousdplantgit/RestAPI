@@ -32,10 +32,11 @@ public class RessourceController {
 	private RessourceRepository ressourceRepository;
 	private static Sort SORTING_DESC = new Sort(Sort.Direction.DESC, "ressourceId");
 
-	@GetMapping("/")
+	@GetMapping()
 	public ResponseEntity<List<Ressource>> home(Model model, Principal principal) throws InterruptedException {
 		TimeUnit.SECONDS.sleep(1);
-		return new ResponseEntity<List<Ressource>>(ressourceRepository.findAll(SORTING_DESC), HttpStatus.OK);
+		List<Ressource> list = ressourceRepository.findAll(SORTING_DESC);
+		return new ResponseEntity<List<Ressource>>(list, HttpStatus.OK);
 
 	}
 

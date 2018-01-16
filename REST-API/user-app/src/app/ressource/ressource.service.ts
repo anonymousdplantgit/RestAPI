@@ -7,7 +7,7 @@ import { Observable } from "rxjs/Observable";
 @Injectable()
 export class RessourceService {
 
-  private apiUrl = 'http://localhost:8080/ressources/';
+  private apiUrl = 'http://localhost:8080/ressources';
   constructor(private http: Http) { }
   findAll(): Observable<Ressource[]>  {
     return this.http.get(this.apiUrl)

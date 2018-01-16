@@ -4,7 +4,7 @@
       <header class="header">
         <div class="row">
           <div class="col-md-4">
-            <h1>Users</h1>
+            <h1>Ressources</h1>
           </div>
           <div class="col-md-6">
 
@@ -30,14 +30,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let user of users">
-          <th scope="row">{{user.ressourceId}}</th>
-          <td>{{user.firstName}}</td>
-          <td>{{user.lastName}}</td>
-          <td>{{user.code}}</td>
+        <tr *ngFor="let ressource of ressources">
+          <th scope="row">{{ressource.ressourceId}}</th>
+          <td>{{ressource.firstName}}</td>
+          <td>{{ressource.lastName}}</td>
+          <td>{{ressource.code}}</td>
           <td>
-            <button type="button" class="btn btn-success" (click)="editUserPage(user)">Edit</button>
-            <button type="button" class="btn btn-danger" (click)="deleteUser(user)">Delete</button>
+            <button type="button" class="btn btn-success" (click)="editUserPage(ressource)">Edit</button>
+            <button type="button" class="btn btn-danger" (click)="deleteUser(ressource)">Delete</button>
           </td>
         </tr>
 

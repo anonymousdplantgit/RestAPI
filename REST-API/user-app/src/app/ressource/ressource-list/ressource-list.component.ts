@@ -20,6 +20,7 @@ export class RessourceListComponent implements OnInit {
     this.ressourceService.findAll().subscribe(
       ressources => {
         this.ressources = ressources;
+        console.log(ressources);
       },
       err => {
         console.log(err);
