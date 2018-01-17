@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 import { RessourceModule } from './ressource/ressource.module';
 import { HttpModule } from '@angular/http';
+import { ProductModule } from './product/product.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,8 +17,9 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     HttpModule,
     UserModule,
-    RessourceModule
-  ],
+    RessourceModule,
+    ProductModule
+   ],
   providers: [],
   bootstrap: [AppComponent]
 })

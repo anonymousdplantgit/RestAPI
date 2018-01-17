@@ -15,18 +15,25 @@ export class UserService {
   }
  
   findById(id: number): Observable<User> {
-    return null;
+    return this.http.get(this.apiUrl + '/' + id)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Error'));
   }
  
   saveUser(user: User): Observable<User> {
-    return null;
+    return this.http.post(this.apiUrl, user)
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
  
-  deleteUserById(id: number): Observable<boolean> {
-    return null;
+ deleteUserById(id: number): Observable<boolean> {
+    return this.http.delete(this.apiUrl + '/' + id)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
  
   updateUser(user: User): Observable<User> {
-    return null;
+    return this.http.put(this.apiUrl, user)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 }
