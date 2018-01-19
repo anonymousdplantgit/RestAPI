@@ -34,7 +34,7 @@ public class ProductController {
 
 	@GetMapping()
 	public ResponseEntity<List<Product>> home(Model model, Principal principal) throws InterruptedException {
-		TimeUnit.SECONDS.sleep(1);
+		TimeUnit.SECONDS.sleep(3);
 		List<Product> list = productRepository.findAll(SORTING_DESC);
 		return new ResponseEntity<List<Product>>(list, HttpStatus.OK);
 

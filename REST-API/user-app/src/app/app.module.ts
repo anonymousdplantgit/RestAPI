@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { RessourceModule } from './ressource/ressource.module';
 import { HttpModule } from '@angular/http';
 import { ProductModule } from './product/product.module';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,8 @@ import { ProductModule } from './product/product.module';
     HttpModule,
     UserModule,
     RessourceModule,
-    ProductModule
+    ProductModule,
+    Ng4LoadingSpinnerModule
    ],
   providers: [],
   bootstrap: [AppComponent]

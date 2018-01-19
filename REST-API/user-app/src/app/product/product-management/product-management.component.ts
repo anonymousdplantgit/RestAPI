@@ -1,6 +1,7 @@
 import { Component, OnInit ,OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Product } from '../product';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 @Component({
@@ -16,19 +17,21 @@ export class ProductManagementComponent implements OnInit,OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private spinnerService: Ng4LoadingSpinnerService) { }
 
   ngOnInit() {
+
     this.getAll();
 
 
     this.form = new FormGroup({
       productId : new FormControl(),
-      ref: new FormControl('', Validators.required),
-      label: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      buyingPrice: new FormControl('', Validators.required),
-      sellingPrice: new FormControl('', Validators.required)
+      ref: new FormControl(null, Validators.required),
+      label: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      buyingPrice: new FormControl(null, Validators.required),
+      sellingPrice: new FormControl(null, Validators.required)
     });
   }
   ngOnDestroy(): void {
@@ -50,22 +53,27 @@ export class ProductManagementComponent implements OnInit,OnDestroy {
       this.getAll();
 }
   getAll() {
+    this.spinnerService.show();
     this.productService.findAll().subscribe(
       products => {
         this.products = products;
         console.log(products);
+        this.spinnerService.hide();
       },
       err => {
         console.log(err);
       }
  
     );
+    
   }
  
   delete(product: Product) {
+    this.spinnerService.show();
     if (product) {
       this.productService.deleteById(product.productId).subscribe(
         res => {
+          this.spinnerService.hide();
           this.getAll();
           console.log('delete product '+ product.productId+' done');
         }

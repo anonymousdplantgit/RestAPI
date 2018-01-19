@@ -4,5 +4,8 @@
     <a routerLink="/ressource" routerLinkActive="active">ressource</a>
     <a routerLink="/product" routerLinkActive="active">Products Manager</a>
   </nav>
+
+  <ng4-loading-spinner [threshold]="2000" [template]="template" [loadingText]="'Please wait...'" [zIndex]="9999"></ng4-loading-spinner>
+ 
 <router-outlet></router-outlet>
 </div>
